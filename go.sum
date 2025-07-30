@@ -1,2 +1,6 @@
+github.com/kakkoyun/checklocks v0.0.0-20250704150719-2f79b8295329 h1:cAMwYa6sAK7UAEoWL0ipaaoMfGdA3pxS3eEMGw08AOA=
+github.com/kakkoyun/checklocks v0.0.0-20250704150719-2f79b8295329/go.mod h1:z6hvaGvBINR1I+t8pgIAivejAgXxTSdNuYp4PqnaNTg=
 golang.org/x/sync v0.16.0 h1:ycBJEhp9p4vXvUZNszeOq0kGTPghopOL8q0fq3vstxw=
 golang.org/x/sync v0.16.0/go.mod h1:1dzgHSNfp02xaA81J2MS99Qcpr2w7fw1gpm99rleRqA=
+golang.org/x/tools v0.34.0 h1:qIpSLOxeCYGg9TrcJokLBG4KFA6d795g0xkBkiESGlo=
+golang.org/x/tools v0.34.0/go.mod h1:pAP9OwEaY1CAW3HOmg3hLZC5Z0CCmzjAF2UQMSqNARg=
