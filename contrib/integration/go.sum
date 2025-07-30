@@ -1,0 +1,6 @@
+github.com/go-kit/log v0.2.1 h1:MRVx0/zhvdseW+Gza6N9rVzU/IVzaeE1SFI4raAhmBU=
+github.com/go-kit/log v0.2.1/go.mod h1:NwTd00d/i8cPZ3xOwwiv2PO5MOcx78fFErGNcVmBjv0=
+github.com/go-logfmt/logfmt v0.5.1 h1:otpy5pqBCBZ1ng9RQ0dPu4PN7ba75Y/aA+UpowDyNVA=
+github.com/go-logfmt/logfmt v0.5.1/go.mod h1:WYhtIu8zTZfxdn5+rREduYbwxfcBr/Vr6KEVveWlfTs=
+github.com/kakkoyun/go-tool-dependency-demo v0.0.0-20250730095257-2e2434647c5b h1:ZxRB+qS7yoo+s8PweCmFhrMjvTY1mQQxun9ukhJw/f0=
+github.com/kakkoyun/go-tool-dependency-demo v0.0.0-20250730095257-2e2434647c5b/go.mod h1:dBf3zFTQl3lF2aPcPowX/WDhE7+Eh6dmry0ZZUFPOpg=
