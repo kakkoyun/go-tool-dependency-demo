@@ -4,15 +4,17 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"log/slog"
 	"net/http"
-	"os"
 	"os/signal"
 	"sync"
 	"syscall"
 	"time"
 
+	"github.com/alecthomas/kong"
+	"github.com/go-kit/log/level"
 	"golang.org/x/sync/errgroup"
+
+	"github.com/kakkoyun/go-tool-dependency-demo/pkg/logger"
 )
 
 const (
@@ -26,8 +28,17 @@ type requestCounter struct {
 	count int
 }
 
+type Flags struct {
+	LogLevel string        `default:"info" enum:"error,warn,info,debug" help:"log level."`
+	Address  string        `default:":8080" help:"Address string for internal server"`
+	Interval time.Duration `default:"1s" help:"Interval between each shell execution"`
+}
+
 func main() {
-	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
+	flags := &Flags{}
+	_ = kong.Parse(flags)
+
+	logger := logger.NewLogger(flags.LogLevel, logger.LogFormatLogfmt, "gotools")
 
 	counter := &requestCounter{
 		mu:    sync.Mutex{},
@@ -41,7 +52,7 @@ func main() {
 
 		_, err := fmt.Fprintf(wrt, "Hello, World! %d", counter.count)
 		if err != nil {
-			logger.ErrorContext(req.Context(), "Failed to write response", "error", err)
+			level.Error(logger).Log("msg", "Failed to write response", "error", err)
 		}
 	})
 
@@ -61,7 +72,7 @@ func main() {
 
 	errgroup, ctx := errgroup.WithContext(ctx)
 
-	logger.InfoContext(ctx, "Starting server", "port", srv.Addr)
+	level.Info(logger).Log("msg", "Starting server", "port", srv.Addr)
 	errgroup.Go(func() error {
 		err := srv.ListenAndServe()
 		if err != nil && !errors.Is(err, http.ErrServerClosed) {
@@ -79,8 +90,8 @@ func main() {
 
 	err := errgroup.Wait()
 	if err != nil {
-		logger.ErrorContext(ctx, "Fatal error", "error", err)
+		level.Error(logger).Log("msg", "Fatal error", "error", err)
 	}
 
-	logger.InfoContext(ctx, "Server stopped")
+	level.Info(logger).Log("msg", "Server stopped")
 }
